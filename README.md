@@ -7,4 +7,6 @@ Front End Technologies used : HTML, CSS, Javascript, jQuery, AngularJS, Bootstra
 
 Back End Technologies used : Node.JS, Express
 
+Worked with Various APIs : Google Places API, Google Maps Geocoding API, Yelp Best-Match API
+
 Cloud Service: AWS Elastic Beanstalk
