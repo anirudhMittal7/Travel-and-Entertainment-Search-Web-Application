@@ -1,0 +1,231 @@
+/* form validation classes */
+
+input.ng-invalid.ng-touched{
+	border: 1px solid red;
+}
+
+input[disabled="disabled"]{
+	opacity: 0.8;
+	cursor: not-allowed !important;
+}
+
+/*------------------------*/
+
+/*  favorite star is yello */
+
+
+.colorStar {
+	color: #ffc107;
+}
+
+/*------------------------*/
+
+/*ANIMATIONS*/
+
+
+#details-table{
+	-webkit-transition: all 0.6s linear;
+	-moz-transition: all 0.6s linear;
+	-o-transition: all 0.6s linear;
+	transition: all 0.6s linear;
+}
+
+#details-table.ng-hide{
+	transform: translateX(-100%);
+}
+
+/*#bootstrap-table{
+	-webkit-transition: all 1s linear;
+	-moz-transition: all 1s linear;
+	-o-transition: all 1s linear;
+	transition: all 1s linear;
+	right: 100%;
+}
+
+#bootstrap-table.ng-hide{
+
+
+}*/
+
+
+
+/*#bootstrap-table.ng-hide-remove{
+
+	-webkit-transition: all 1s linear;
+	-moz-transition: all 1s linear;
+	-o-transition: all 1s linear;
+	transition: all 1s linear;
+	
+}
+
+#bootstrap-table.ng-hide-remove-active {
+	transform: translateX(100%);
+}*/
+
+
+/* fading animation */
+
+.review_box_animate.ng-hide-remove{
+	
+	-webkit-transition: opacity 0.5s linear 1s;
+	-moz-transition: opacity 0.5s linear 1s;
+	-o-transition: opacity 0.5s linear 1s;
+	
+	transition: opacity 0.5s linear 1s;
+	opacity: 0;
+	display: block !important;
+}
+
+.review_box_animate.ng-hide-remove-active{
+	opacity: 1;
+}
+
+.review_box_animate.ng-hide-add {
+    -webkit-transition: opacity 0.5s linear 0.2s;
+	-moz-transition: opacity 0.5s linear 0.2s;
+    -o-transition: opacity 0.5s linear 0.2s;
+    transition: opacity 0.5s linear 0.2s;
+    opacity: 1;
+	display: block !important;
+
+}
+
+
+.review_box_animate.ng-hide-add-active {
+    opacity: 0;
+}
+
+/*------------------------*/
+
+
+
+
+.bg{
+	background-color: #f6f6f6;
+	border-radius: 8px;
+	max-width: 768px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.detailsButtonClass{
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+	border: 1px solid #000;
+}
+
+#map, #street_view{
+	width: 100%;
+	height: 60vh;
+	border: 1px solid red;
+	margin-bottom: 10px;
+}
+
+#place_heading {
+	text-align: center;
+	margin-top: 8vh;
+	margin-bottom: 8vh;
+}
+
+
+#street_map_image{
+	width: 30px;
+	height: 30px;	
+}
+
+#twitter_button{
+	background-image: url('http://cs-server.usc.edu:45678/hw/hw8/images/Twitter.png');
+	width: 40px;
+	height: 40px;
+	background-size: cover;
+	border-radius: 5px;
+}
+
+.fav_buttons{
+	width: 40px; height: 40px;  border-radius: 5px;
+}
+
+#dailyOpenHours{
+	text-decoration: underline;
+	margin-left: 3vw;
+	color: blue;
+}
+
+#dailyOpenHours:hover{
+	cursor: pointer;
+	opacity: 0.9;
+}
+
+.potato {
+	width: 100%;
+}
+
+.tomato {
+	padding: 5px 5px !important;
+}
+
+#rateYo{
+	display: inline-block;
+	height: 40px;
+	margin-left: 1vw;
+}
+
+
+.googleReviewBox, .yelpReviewBox{
+
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 20vh;
+	border: 1px solid #eacece;
+	padding: 5px;
+	margin: 5px 0 5px 0;
+
+}
+
+.google_profile_img, .yelp_profile_img{
+
+	height: 60px;
+}
+
+.mystars{
+	height: 40px;
+}
+
+.google_text, .yelp_text{
+
+	font-size: 0.9em;
+}
+
+.boldText { 
+
+	font-weight: bold;
+
+}
+/**/
+
+@media screen and (min-width: 768px) {
+	.card-columns {
+		column-count: 4;
+	}
+
+}
+
+@media screen and (max-width: 768px){
+	.card-columns {
+		column-count: 1;
+
+	}
+}
+
+.card-columns {
+  /*display: inline-block;*/
+
+  /*@media (min-width: 768px) {
+    column-count: 4;
+  }*/
+}
+
+.newpotato {
+	width: inherit;
+}

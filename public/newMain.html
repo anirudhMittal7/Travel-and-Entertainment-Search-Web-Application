@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html ng-app="angularHomework">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Travel and Entertainment Search</title>
+
+	<!-- BOOTSTRAP CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+
+	<!-- jQuert first, then Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!--   awesome cdn  -->
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script> -->
+
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script> -->
+
+
+	<!--Bootstrap Table CDNs -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+	<!-- Latest compiled and minified Locales -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+
+	<!-- Angular CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js"></script>
+
+
+	<!-- RateYo -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+	<!-- MomentJS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+
+	<!-- Twitter -->
+	<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+
+</head>
+
+<body ng-controller="SimpleController" >
+
+	<div class="container bg" style="padding-top: 30px;">
+		<h3 class="page-header offset-sm-3"> Travel and Entertainment Search</h3>
+
+		<form id="inputForm" name="searchForm" novalidate ng-submit="formSubmitted()"  >
+			<div class="form-group row">
+				<label for="inputKeyword" class="col-sm-3 col-form-label">Keyword<sup>*</sup></label>
+				<div class="col-sm-9">
+					<input type="text" id="inputKeyword" name="keyword" class="form-control" ng-model="keyword" ng-required="true" >
+				</div>
+				<div class="ng-hide offset-md-3" ng-show="searchForm.keyword.$touched && searchForm.keyword.$invalid">
+					<small style="color:red; display: block; margin-left: 20px;">Please enter a keyword</small>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="inputCategory" class="col-sm-3 col-form-label">Category</label>
+				<div class="col-sm-5">
+					<select id="inputCategory" class="form-control" ng-init="category='default'" name="category" ng-model="category">
+						<option value="default">Default</option>
+						<option value="airport">Airport</option>
+						<option value="amusement_park">Amusement Park</option>
+						<option value="aquarium">Aquarium</option>
+						<option value="art_gallery">Art Gallery</option>
+						<option value="bakery">Bakery</option>
+						<option value="bar">Bar</option>
+						<option value="beauty_salon">Beauty Salon</option>
+						<option value="bowling_alley">Bowling Alley</option>
+						<option value="bus_station">Bus Station</option>
+						<option value="cafe">Cafe</option>
+						<option value="campground">Campground</option>
+						<option value="car_rental">Car Rental</option>
+						<option value="casino">Casino</option>
+						<option value="lodging">Lodging</option>
+						<option value="movie_theater">Movie Theater</option>
+						<option value="museum">Museum</option>
+						<option value="night_club">Night Club</option>
+						<option value="park">Park</option>
+						<option value="parking">Parking</option>
+						<option value="restaurant">Restaurant</option>
+						<option value="shopping_mall">Shopping Mall</option>
+						<option value="stadium">Stadium</option>
+						<option value="subway_station">Subway Station</option>
+						<option value="taxi_stand">Taxi Stand</option>
+						<option value="train_station">Train Station</option>
+						<option value="transit_station">Transit Station</option>
+						<option value="travel_agency">Travel Agency</option>
+						<option value="zoo">Zoo</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="inputDistance" class="col-sm-3 col-form-label">Distance(miles)</label>
+				<div class="col-sm-5">
+					<input type="text" name="distance" id="inputDistance" placeholder="10" class="form-control" ng-model="distance">
+				</div>
+			</div>
+
+			<fieldset class="form-group" ng-init="gridRadio='option1' " >
+    			<div class="row">
+      				<legend class="col-form-label col-sm-3 pt-0">From<sup>*</sup></legend>
+      				<div class="col-sm-9">
+        				<div class="form-check">
+        					<ng-form name="form1">
+          						<input class="form-check-input" type="radio" name="gridRadios" id="inputRadio1" value="option1" checked ng-model="gridRadio">
+          						<label class="form-check-label" for="inputRadio1">
+            						Current Location
+          						</label>
+          					</ng-form>
+        				</div>
+        				<div class="form-check">
+        					<ng-form name="form2">
+          						<input class="form-check-input" type="radio" name="gridRadios" id="inputRadio2" value="option2" ng-model="gridRadio">
+          						<label class="form-check-label" for="inputRadio2" >
+            						Other. Please Specify:
+          						</label>
+          					</ng-form>
+        				</div>
+      				</div>
+    			</div>
+  			</fieldset>
+
+  			<div class="form-group row">
+  				<label for="inputNewLocation" class="col-sm-3 col-form-label sr-only" ></label>
+  				<div class="col-sm-9 offset-sm-3">
+  					<input type="text" name="newLocation" id="inputNewLocation" placeholder="Enter a location" class="form-control" ng-model="newLocation" ng-required="gridRadio == 'option2'" disabled >
+  				</div>
+  				<div class="ng-hide offset-md-3" ng-show="searchForm.newLocation.$touched && searchForm.newLocation.$invalid && gridRadio == 'option2'">
+					<small style="color:red; display: block; margin-left: 20px;">Please enter a location</small>
+				</div>
+  			</div>
+
+  			<div class="form-group row" style="padding-bottom: 30px;">
+    			<div class="col-sm-9 ">
+    				<button type="submit" id="searchButton" class="btn btn-primary" ng-disabled="searchForm.$invalid"><i class="fa fa-search"></i> Search</button>
+    				<button type="reset" class="btn btn-light" style="border: 1px solid #e2bdbd;" ng-click="clearEverything()" >Clear</button>
+    			</div>
+  			</div>
+		</form>
+	</div>
+
+
+
+
+	<div class="container">
+		<div class="form-group row">
+    			<div class="col-sm-12 text-center">
+    				<button type="submit" id="resultsButton"  class="btn btn-primary" ng-click="resultsButtonClicked()">Results</button>
+    				<button type="button" id="favoritesButton" class="btn btn-link" ng-click="favoritesButtonClicked()">Favorites</button>
+    			</div>
+  			</div>
+	</div>
+
+	<div class="container">
+		
+		<button disabled ng-show="showDetailsButton" id="detailsDisabled" class="btn btn-light float-right detailsButtonClass ng-hide" ng-click="goBackToDetails()" >Details <i class="fa fa-chevron-right"></i></button>
+		
+	</div>
+
+	<div class="container">
+		<div class="progress ng-hide" ng-show="showProgressBar">
+	  		<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
+	</div>
+
+
+	<div class="container ng-hide" ng-show="failedAlert" >
+		<div class="alert alert-danger" role="alert" style="color: red;">
+  			Failed to get search results
+		</div>
+	</div>
+
+	<div class="container ng-hide" ng-show="showTableAlert">
+		<div class="alert alert-warning" role="alert"  style="margin-top: 8vh;">
+  			No Records 
+		</div>
+	</div>
+
+	<div class="container ng-hide" ng-show="showFavoriteTableAlert">
+		<div class="alert alert-warning" role="alert"  style="margin-top: 8vh;">
+  			No Records 
+		</div>
+	</div>
+
+	
+	<div class="container">
+
+	<div id="bootstrap-table" class="table-responsive ng-hide" ng-show="showPlaceTable">
+		
+		<table class="table table-hover" >
+			<thead>
+				<th>#</th>
+				<th>Category</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Favorite</th>
+				<th>Details</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="x in nearbyPlaces.results" ng-class="{'table-warning': $index == selectedRow}">
+					<!-- <td>{{$index + ctr*20 + 1 }}</td> -->
+					<td>{{$index + 1}}</td>
+					<td><img ng-src='{{ x.icon }}' style="width: 30px;" /> </td>
+					<td style="vertical-align: middle">{{x.name}}</td>
+					<td style="vertical-align: middle">{{x.vicinity}}</td>
+					
+					<td style="vertical-align: middle">
+						<button type="button" data-place="{{x}}" ng-click="addPlaceToFavorites($event)" class="btn btn-light fav_buttons">
+							<i class="fa" ng-class="isFavorite[x.place_id] == true ? 'fa fa-star colorStar' : 'fa fa-star-o' " > </i>
+						</button>
+					</td>
+					
+					<td style="vertical-align: middle">
+						<button type="button" data-placeid="{{x.place_id}}" data-lat="{{x.geometry.location.lat}}" data-lng="{{x.geometry.location.lng}}" class="btn btn-light" ng-click="getDetails($event, $index, -1)">
+							<i class="fa fa-chevron-right"></i>
+						</button>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+
+		
+		<div class="container" align="center">
+			<span>
+				<button class="btn btn-light ng-hide" ng-show="showPrevious" ng-click="showPreviousPageResults()" > Previous </button>
+			</span>
+			
+			<span>
+				<button class="btn btn-light ng-hide" ng-show="showNext" data-nextToken="{{nearbyPlaces.next_page_token}}" ng-click="showNextPageResults($event)"> Next </button>
+			</span>
+		</div>	
+		
+		
+	</div>
+</div>
+	
+	<div class="container">
+	<div id="favorites-table" class="table-responsive ng-hide" ng-show="showFavoriteTable">
+		
+		<table class="table">
+			<thead>
+				<th>#</th>
+				<th>Category</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Favorite</th>
+				<th>Details</th>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="value in displayFavorites" ng-class="{'table-warning': $index == selectedRow}">
+					<td>{{$index + 1}}</td>
+					<td><img ng-src="{{value.icon}}" style="width: 30px;" /></td>
+					<td style="vertical-align: middle">{{value.name}}</td>
+					<td style="vertical-align: middle">{{value.vicinity}}</td>
+					<td style="vertical-align: middle"><button type="button" data-placeKey="{{value.place_id}}" ng-click="removePlaceFromFavorites($event)" class="btn btn-light fav_buttons"><i class="fa fa-trash" aria-hidden="true" ></button></td>
+					<td style="vertical-align: middle"><button type="button" data-placeid="{{value.place_id}}" data-lat="{{value.geometry.location.lat}}" data-lng="{{value.geometry.location.lng}}" class="btn btn-light" ng-click="getDetails($event, $index, -2)"><i class="fa fa-chevron-right"></i></button> </td>	
+				</tr>
+			</tbody>
+			
+		</table>
+
+	</div>	
+	</div>
+
+	
+
+
+	<div class="container ng-hide" id="details-table" ng-show="showDetailTable" >
+
+		<h4 id="place_heading" >{{placeDetails.name}}</h4>
+
+		<div>
+			<button class="btn btn-light" ng-click="goBackToList()"><i class="fa fa-chevron-left"></i> List </button>
+			<div class="float-right">
+				<button type="btn btn-light" id="twitter_button" ng-click="tweetTheTweet()"></button>
+			</div>
+			<div class="float-right">
+				<button type="button" class="btn btn-light fav_buttons" style="margin-right: 10px;" data-place="{{placeDetails}}" ng-click="addPlaceToFavorites($event)">
+					<i class="fa" ng-class="isFavorite[placeDetails.place_id] == true ? 'fa fa-star colorStar' : 'fa fa-star-o' "></i>
+				</button>
+			</div>
+				
+		</div>
+
+		
+		
+		<div style="margin-top: 10px;" class="row">
+			<div class="col-md-12 col-sm-12" >
+			<ul class="nav nav-tabs justify-content-end" style="margin-bottom: 20px;" >
+	  			<li class="nav-item">
+	    			<a class="nav-link" ng-class="selectTab == true ? 'active' : '' " id="firstTab" data-toggle="tab" href="#tabInfo" >Info</a>
+	  			</li>
+	 			<li class="nav-item">
+	    			<a class="nav-link" ng-class="selectTab == false ? 'active' : '' " id="secondTab" data-toggle="tab" href="#tabPhotos" >Photos</a>
+	  			</li>
+	  			<li class="nav-item">
+	    			<a class="nav-link" ng-class="selectTab == false ? 'active' : '' " id="thirdTab" data-toggle="tab" href="#tabMaps" >Map</a>
+	  			</li>
+	  			<li class="nav-item">
+	    			<a class="nav-link" ng-class="selectTab == false ? 'active' : '' " id="fourthTab"  data-toggle="tab" href="#tabReviews" ng-click="greviews()">Reviews</a>
+	  			</li>
+			</ul>
+			</div>
+		</div>
+
+
+		<div class="tab-content">
+    		<div id="tabInfo" class="tab-pane active row">
+    			
+    			<div class="table-responsive">
+    				<table class="table table-striped table-responsive-sm">
+    					<tbody>
+    						<tr ng-if="address">
+    							<th>Address</th>
+    							<td >{{placeDetails.formatted_address}}</td>
+    						</tr>
+
+    						<tr ng-if="phone_number">
+    							<th>Phone Number</th>
+    							<td>{{placeDetails.international_phone_number}}</td>
+    						</tr>
+
+    						<tr ng-if="price_level">
+    							<th>Price Level</th>
+    							<td>{{dollars}}</td>
+    						</tr>
+
+    						<tr ng-if="rating">
+    							<th>Rating</th>
+    							<td>{{placeDetails.rating}} <div id="rateYo"></div></td>
+    						</tr>
+
+    						<tr ng-if="google_page">
+    							<th>Google Page</th>
+    							<td><a ng-href="{{placeDetails.url}}" target="_blank"> {{placeDetails.url}}</a></td>
+    						</tr>
+
+    						<tr ng-if="website">
+    							<th>Website</th>
+    							<td><a ng-href="{{placeDetails.website}}" target="_blank"> {{placeDetails.website}}</a></td>
+    						</tr>
+
+    						<tr ng-if="hours">
+    							<th>Hours</th>
+    							<td><span >{{currentOpenState}}</span> {{currentOpenHours}} <button id="dailyOpenHours" type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">Daily open hours</button></td>
+    						</tr>
+    					</tbody>
+    				</table>	
+    			</div>
+
+    		</div>
+
+
+    	
+
+    		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  				<div class="modal-dialog modal-dialog-centered" role="document">
+    				<div class="modal-content">
+      					<div class="modal-header">
+        					<h5 class="modal-title" id="exampleModalLabel">Open Hours</h5>
+        					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          						<span aria-hidden="true">&times;</span>
+        					</button>
+      					</div>
+      				<!-- 	<div class="modal-header" ng-class="{'boldText': $index == openHour}" ng-repeat="hour in placeDetails.opening_hours.weekday_text"> -->
+      					<div class="modal-header" ng-class="{'boldText': $index == 0}" ng-repeat="hour in placeHours">
+        					 {{hour}}
+      					</div>
+      					<div class="modal-footer">
+        					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      					</div>
+    				</div>
+  				</div>
+			</div>
+
+
+
+    		<div id="tabPhotos" class="tab-pane fade">
+
+    			<div class="card-columns">
+    				<div class="card text-center" ng-repeat = "url in imageUrls">
+    					<a class="newpotato" target="_blank" ng-href="{{url}}"><img class="newpotato img-thumbnail" ng-src="{{url}}"></a>
+    				</div>
+    			</div>
+
+    			<div class="alert alert-warning" role="alert" ng-show="showPhotosAlert" style="margin-top: 10vh;">
+  					No Records 
+				</div>
+
+    		</div>
+
+    		<div id="tabMaps" class="tab-pane fade">
+
+    			<form name="mapForm">
+    				<div class="form-row">
+    					
+    				 	<div class="form-group col-md-4">
+    						<label for="inputSource">From</label>
+    						<input type="text" class="form-control" id="inputSource" name="source" >
+  					 	</div>
+  						<div class="form-group col-md-4">
+    						<label for="inputDestination">To</label>
+    						<input type="text" class="form-control" readonly id="inputDestination" name="destination" ng-model="destinationField">
+  						</div>
+  						<div class="form-group col-md-2">
+    						<label for="inputMode">Travel Mode</label><br>
+    						<select id="inputMode" class="custom-select">
+    							<option value="DRIVING">Driving</option>
+    							<option value="BICYCLING">Bicycling</option>
+    							<option value="WALKING">Walking</option>
+    							<option value="TRANSIT">Transit</option>
+    						</select>
+	  					</div>
+  						<div class="form-group col-md-2 col-sm-12">
+  							<label class="invisible">Invisible</label>
+  							<div class="row" style="margin-left: 2px;">
+    							<button class="btn btn-primary" class="col-sm-12" ng-click="showMaps()">Get Directions</button>
+    						</div>
+  						</div>
+  					</div>
+    			</form>
+
+    			<button type="button" class="btn btn-light" id="street_map_button" ng-click="streetView()"><img id="street_map_image" src="http://cs-server.usc.edu:45678/hw/hw8/images/Pegman.png"></button>
+
+				<div class="how" id="map"></div>
+				<div id="street_view" ng-show="showStreetView"></div>
+				<div id="directionsPanel"></div>
+
+    		</div>
+
+    		<div id="tabReviews" class="tab-pane fade">
+
+    			<div class="btn-group">
+  					<button id="typeReview" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  						Google Reviews
+  					</button>
+  					 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<button class="dropdown-item" id="googleButton" type="button" ng-click="showGoogleReview($event)" >Google Reviews</button>
+    					<button class="dropdown-item" id="yelpButton" type="button" ng-click="showYelpReview($event)" >Yelp Reviews</button>
+ 					 </div>
+				</div>
+
+				<div class="btn-group">
+  					<button id="typeOrder" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Default Order
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<button class="dropdown-item" type="button" id="default_order" ng-click="sortReviews($event)">Default Order</button>
+    					<button class="dropdown-item" type="button" id="highest_rating" ng-click="sortReviews($event)">Highest Rating</button>
+    					<button class="dropdown-item" type="button" id="lowest_rating" ng-click="sortReviews($event)">Lowest Rating</button>
+    					<button class="dropdown-item" type="button" id="most_recent" ng-click="sortReviews($event)">Most Recent</button>
+    					<button class="dropdown-item" type="button" id="least_recent" ng-click="sortReviews($event)">Least Recent</button>
+  					</div>
+				</div>
+
+
+    			<div ng-show="showGoogleReviews" id="myGoogleReviews"  class="review_box_animate" >
+    				<div class="row googleReviewBox" ng-repeat="g_review in googleReviews" >
+    					<div class="col-sm-1">
+    						<a ng-href="{{g_review.author_url}}" target="_blank"><img class="google_profile_img" ng-src="{{g_review.profile_photo_url}}"></a>
+    					</div>
+    					<div class="col-sm-11">
+    						<div>
+    							<a ng-href="{{g_review.author_url}}" target="_blank" class="google_text">{{g_review.author_name}}</a>
+    						</div>    						
+    							<div id="google{{$index}}" class="mystars" style="display: inline-block;"> </div>
+    							<div class="google_text" style="display: inline-block;"> {{g_review.timeStamp}}</div>
+    						
+    						<br>
+    						<p class="google_text">{{g_review.text}}</p>
+    					</div>
+    				</div>
+    			</div>
+
+    			<div class="container-fluid ng-hide" ng-show="showGoogleReviewsAlert">
+					<div class="alert alert-warning" role="alert"  style="margin-top: 10vh;">
+  						No Records 
+					</div>
+				</div>
+
+    			<div ng-show="showYelpReviews" id="myYelpReviews" class="review_box_animate">
+    				<div class=" row yelpReviewBox" ng-repeat="y_review in yelpReviews">
+    					<div class="col-sm-1">
+    						<a ng-href="{{y_review.url}}" target="_blank"><img class="yelp_profile_img" ng-src="{{y_review.user.image_url}}"></a>
+    					</div>
+    					<div class="col-sm-11">
+    						<div>
+    							<a ng-href="{{y_review.url}}" target="_blank">{{y_review.user.name}}</a>
+    						</div>  
+    						<div id="yelp{{$index}}" class="mystars" style="display: inline-block;"></div>
+    						<div style="display: inline-block;">{{y_review.time_created}}</div>
+    						<br>
+    						<p class="yelp_text">{{y_review.text}}</p>
+    					</div>
+    				</div>
+    			</div>
+
+    			<div class="container-fluid ng-hide" ng-show="showYelpReviewsAlert">
+					<div class="alert alert-warning" role="alert"  style="margin-top: 10vh;">
+  						No Yelp Records 
+					</div>
+				</div>
+
+      		</div>
+
+  		</div>
+
+	</div>
+
+
+	<script type="text/javascript" src="newScript.js"></script>
+
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWD8XaL8p63QFJXtVLzsKJDqAyLdDqSxY&libraries=places&callback=activatePlaceSearch"></script>
+
+</body>
+</html>
