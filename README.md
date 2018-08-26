@@ -1,5 +1,6 @@
 # Travel-and-Entertainment-Search-Web-Application
-Designed a single page application that serves details regarding Travel and Entertainment places
+Designed a single page application that serves details regarding Travel and Entertainment places.  [Link to Website](http://applicationone-env.us-east-2.elasticbeanstalk.com/newMain.html)
+
 
 Problem Statement: Problem_Statement.pdf
 
